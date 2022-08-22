@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "string.h"
+#include<stdio.h>
+#include<stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,6 +33,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define d9on HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 1);  ;
+#define d10on HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, 1);  ;
+#define d9off HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 0);  ;
+#define d10off HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, 0);  ;
+uint8_t buff1[2],x=0,dataRaedy=0,bufferReady=0,bufferCount=0 ;
+char buffer[100],text[100];
+uint16_t adcVal1[128],datacodec[128],datacodec2[128];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -66,6 +75,78 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim==&htim1){
+
+		HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+
+	}
+	if(htim==&htim2){
+
+		HAL_ADC_Start(&hadc1);
+		HAL_ADC_PollForConversion(&hadc1, 5);
+		adcVal1[0]=0xfff-HAL_ADC_GetValue(&hadc1);
+		HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, adcVal1[0]);
+
+//		if(x<128){
+//
+//		  scanADC();
+//
+//		}
+//
+//		  if(bufferReady){
+//			  if(bufferCount<128){
+//
+//				  	  	  	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, datacodec2[bufferCount]);
+//				  	  	  	bufferCount++;
+////				  			sprintf(text, "a= %d\r\n", datacodec2[bufferCount]);
+////				  			HAL_UART_Transmit(&huart6,text,strlen(text),2000);
+//
+//			  }else{
+//				  bufferReady=0;
+//			  }
+//
+//		  }
+
+	}
+
+}
+void runCodec(uint16_t adcVal[128]){
+	if(dataRaedy==0){
+		x=0;
+	for(uint8_t i;i<128;i++){
+
+		datacodec[i]=adcVal[i];
+
+	}
+	dataRaedy=1;
+	}
+
+}
+void scanADC(){
+
+	  HAL_ADC_Start(&hadc1);
+	  HAL_ADC_PollForConversion(&hadc1, 5);
+	  adcVal1[x]=0xfff-HAL_ADC_GetValue(&hadc1);
+	  x++;
+
+}
+void feelBuffer(){
+	if(bufferReady==0){
+	for(uint8_t i;i<128;i++){
+
+		datacodec2[i]=datacodec[i];
+
+	}
+	bufferReady=1;
+	bufferCount=0;
+	dataRaedy=0;
+	}
+
+}
 
 /* USER CODE END 0 */
 
@@ -103,13 +184,47 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_UART_Receive_IT(&huart6,buff1,1);
+  HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+//  HAL_DAC_Start(&hdac, DAC_CHANNEL_2);
+  strcpy(buffer, "\r\nhttps://maps.google.com/?q=");
+  HAL_TIM_PWM_Start_IT(&htim1,TIM_CHANNEL_1);		//start timer 1
+  HAL_TIM_PWM_Start_IT(&htim2,TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+		  if(x>126)runCodec(adcVal1);
+		  if(dataRaedy)feelBuffer();
+//		  if(adcVal0<170)adcVal0=0;
+
+//		  adcVal0=adcVal0^0x501;
+//		  adcVal0=adcVal0^0x55a;
+
+//		  adcVal0=adcVal0^0x55a;
+//		  adcVal0=adcVal0^0x501;
+
+//		  itoa(adcVal0, text, 16);
+//		  HAL_UART_Transmit(&huart6,text,strlen(text),2000);
+//		  HAL_UART_Transmit(&huart6,"\r\n",2,2000);
+//		  HAL_Delay(50);
+//		  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, adcVal0);
+//		  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_2, DAC_ALIGN_12B_R, adcVal0);
+
+
+
+
+//	  d9on
+//	  d10on
+//	  HAL_Delay(500);
+//	  HAL_UART_Transmit(&huart6,buffer,strlen(buffer),2000);
+//	  HAL_UART_Transmit(&huart6,text,strlen(text),2000);
+//	  d9off
+//	  d10off
+//	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
