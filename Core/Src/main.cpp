@@ -39,7 +39,7 @@
 #define d10off HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, 0);  ;
 uint8_t buff1[2],x=0,dataRaedy=0,bufferReady=0,bufferCount=0 ;
 char buffer[100],text[100];
-uint16_t adcVal1[128],datacodec[128],datacodec2[128];
+uint16_t adcVal1[1024],datacodec[128],datacodec2[128];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

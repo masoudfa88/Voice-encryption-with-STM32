@@ -23,29 +23,29 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   9 .ccmram       00000000  10000000  10000000  0002000c  2**0
                   CONTENTS
- 10 .bss          000004bc  2000000c  2000000c  0002000c  2**2
+ 10 .bss          00000bbc  2000000c  2000000c  0002000c  2**2
                   ALLOC
- 11 ._user_heap_stack 00000600  200004c8  200004c8  0002000c  2**0
+ 11 ._user_heap_stack 00000600  20000bc8  20000bc8  0002000c  2**0
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000101d3  00000000  00000000  0002003c  2**0
+ 13 .debug_info   000101e4  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002035  00000000  00000000  0003020f  2**0
+ 14 .debug_abbrev 0000203e  00000000  00000000  00030220  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000e18  00000000  00000000  00032248  2**3
+ 15 .debug_aranges 00000e18  00000000  00000000  00032260  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000d60  00000000  00000000  00033060  2**3
+ 16 .debug_ranges 00000d60  00000000  00000000  00033078  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00024c47  00000000  00000000  00033dc0  2**0
+ 17 .debug_macro  00024c47  00000000  00000000  00033dd8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00010228  00000000  00000000  00058a07  2**0
+ 18 .debug_line   00010228  00000000  00000000  00058a1f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000dafe7  00000000  00000000  00068c2f  2**0
+ 19 .debug_str    000dafe7  00000000  00000000  00068c47  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  00143c16  2**0
+ 20 .comment      00000050  00000000  00000000  00143c2e  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00003bcc  00000000  00000000  00143c68  2**2
+ 21 .debug_frame  00003bcc  00000000  00000000  00143c80  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -415,12 +415,12 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
  8000522:	3708      	adds	r7, #8
  8000524:	46bd      	mov	sp, r7
  8000526:	bd80      	pop	{r7, pc}
- 8000528:	200003f0 	.word	0x200003f0
+ 8000528:	20000af0 	.word	0x20000af0
  800052c:	40020c00 	.word	0x40020c00
- 8000530:	20000438 	.word	0x20000438
- 8000534:	20000394 	.word	0x20000394
+ 8000530:	20000b38 	.word	0x20000b38
+ 8000534:	20000a94 	.word	0x20000a94
  8000538:	20000094 	.word	0x20000094
- 800053c:	200003dc 	.word	0x200003dc
+ 800053c:	20000adc 	.word	0x20000adc
 
 08000540 <_Z8runCodecPt>:
 void runCodec(uint16_t adcVal[128]){
@@ -473,7 +473,7 @@ void runCodec(uint16_t adcVal[128]){
  800058a:	bf00      	nop
  800058c:	2000002b 	.word	0x2000002b
  8000590:	2000002a 	.word	0x2000002a
- 8000594:	20000194 	.word	0x20000194
+ 8000594:	20000894 	.word	0x20000894
 
 08000598 <_Z10feelBufferv>:
 	  HAL_ADC_PollForConversion(&hadc1, 5);
@@ -530,8 +530,8 @@ void feelBuffer(){
  80005de:	f85d 7b04 	ldr.w	r7, [sp], #4
  80005e2:	4770      	bx	lr
  80005e4:	2000002c 	.word	0x2000002c
- 80005e8:	20000194 	.word	0x20000194
- 80005ec:	20000294 	.word	0x20000294
+ 80005e8:	20000894 	.word	0x20000894
+ 80005ec:	20000994 	.word	0x20000994
  80005f0:	2000002d 	.word	0x2000002d
  80005f4:	2000002b 	.word	0x2000002b
 
@@ -626,12 +626,12 @@ int main(void)
  800066c:	e7f1      	b.n	8000652 <main+0x5a>
  800066e:	bf00      	nop
  8000670:	20000028 	.word	0x20000028
- 8000674:	20000480 	.word	0x20000480
- 8000678:	200003dc 	.word	0x200003dc
+ 8000674:	20000b80 	.word	0x20000b80
+ 8000678:	20000adc 	.word	0x20000adc
  800067c:	20000030 	.word	0x20000030
  8000680:	080043cc 	.word	0x080043cc
- 8000684:	200003f0 	.word	0x200003f0
- 8000688:	20000438 	.word	0x20000438
+ 8000684:	20000af0 	.word	0x20000af0
+ 8000688:	20000b38 	.word	0x20000b38
  800068c:	2000002a 	.word	0x2000002a
  8000690:	20000094 	.word	0x20000094
  8000694:	2000002b 	.word	0x2000002b
@@ -910,7 +910,7 @@ static void MX_ADC1_Init(void)
  8000826:	3710      	adds	r7, #16
  8000828:	46bd      	mov	sp, r7
  800082a:	bd80      	pop	{r7, pc}
- 800082c:	20000394 	.word	0x20000394
+ 800082c:	20000a94 	.word	0x20000a94
  8000830:	40012000 	.word	0x40012000
  8000834:	0f000001 	.word	0x0f000001
 
@@ -1016,7 +1016,7 @@ static void MX_DAC_Init(void)
  80008b2:	46bd      	mov	sp, r7
  80008b4:	bd80      	pop	{r7, pc}
  80008b6:	bf00      	nop
- 80008b8:	200003dc 	.word	0x200003dc
+ 80008b8:	20000adc 	.word	0x20000adc
  80008bc:	40007400 	.word	0x40007400
 
 080008c0 <_ZL12MX_TIM1_Initv>:
@@ -1145,7 +1145,7 @@ static void MX_TIM1_Init(void)
  8000972:	3718      	adds	r7, #24
  8000974:	46bd      	mov	sp, r7
  8000976:	bd80      	pop	{r7, pc}
- 8000978:	200003f0 	.word	0x200003f0
+ 8000978:	20000af0 	.word	0x20000af0
  800097c:	40010000 	.word	0x40010000
 
 08000980 <_ZL12MX_TIM2_Initv>:
@@ -1270,7 +1270,7 @@ static void MX_TIM2_Init(void)
  8000a2a:	3718      	adds	r7, #24
  8000a2c:	46bd      	mov	sp, r7
  8000a2e:	bd80      	pop	{r7, pc}
- 8000a30:	20000438 	.word	0x20000438
+ 8000a30:	20000b38 	.word	0x20000b38
 
 08000a34 <_ZL19MX_USART6_UART_Initv>:
   * @brief USART6 Initialization Function
@@ -1340,7 +1340,7 @@ static void MX_USART6_UART_Init(void)
 }
  8000a84:	bf00      	nop
  8000a86:	bd80      	pop	{r7, pc}
- 8000a88:	20000480 	.word	0x20000480
+ 8000a88:	20000b80 	.word	0x20000b80
  8000a8c:	40011400 	.word	0x40011400
 
 08000a90 <_ZL12MX_GPIO_Initv>:
@@ -2103,7 +2103,7 @@ void TIM1_BRK_TIM9_IRQHandler(void)
  8000e72:	bf00      	nop
  8000e74:	bd80      	pop	{r7, pc}
  8000e76:	bf00      	nop
- 8000e78:	200003f0 	.word	0x200003f0
+ 8000e78:	20000af0 	.word	0x20000af0
 
 08000e7c <TIM1_UP_TIM10_IRQHandler>:
 
@@ -2127,7 +2127,7 @@ void TIM1_UP_TIM10_IRQHandler(void)
  8000e86:	bf00      	nop
  8000e88:	bd80      	pop	{r7, pc}
  8000e8a:	bf00      	nop
- 8000e8c:	200003f0 	.word	0x200003f0
+ 8000e8c:	20000af0 	.word	0x20000af0
 
 08000e90 <TIM1_TRG_COM_TIM11_IRQHandler>:
 
@@ -2151,7 +2151,7 @@ void TIM1_TRG_COM_TIM11_IRQHandler(void)
  8000e9a:	bf00      	nop
  8000e9c:	bd80      	pop	{r7, pc}
  8000e9e:	bf00      	nop
- 8000ea0:	200003f0 	.word	0x200003f0
+ 8000ea0:	20000af0 	.word	0x20000af0
 
 08000ea4 <TIM1_CC_IRQHandler>:
 
@@ -2175,7 +2175,7 @@ void TIM1_CC_IRQHandler(void)
  8000eae:	bf00      	nop
  8000eb0:	bd80      	pop	{r7, pc}
  8000eb2:	bf00      	nop
- 8000eb4:	200003f0 	.word	0x200003f0
+ 8000eb4:	20000af0 	.word	0x20000af0
 
 08000eb8 <TIM2_IRQHandler>:
 
@@ -2199,7 +2199,7 @@ void TIM2_IRQHandler(void)
  8000ec2:	bf00      	nop
  8000ec4:	bd80      	pop	{r7, pc}
  8000ec6:	bf00      	nop
- 8000ec8:	20000438 	.word	0x20000438
+ 8000ec8:	20000b38 	.word	0x20000b38
 
 08000ecc <USART6_IRQHandler>:
 
@@ -2223,7 +2223,7 @@ void USART6_IRQHandler(void)
  8000ed6:	bf00      	nop
  8000ed8:	bd80      	pop	{r7, pc}
  8000eda:	bf00      	nop
- 8000edc:	20000480 	.word	0x20000480
+ 8000edc:	20000b80 	.word	0x20000b80
 
 08000ee0 <SystemInit>:
   *         configuration.
@@ -2344,7 +2344,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000f4c:	2000000c 	.word	0x2000000c
   ldr r4, =_ebss
- 8000f50:	200004c8 	.word	0x200004c8
+ 8000f50:	20000bc8 	.word	0x20000bc8
 
 08000f54 <ADC_IRQHandler>:
  * @retval None       
@@ -2507,7 +2507,7 @@ __weak void HAL_IncTick(void)
  8001018:	4770      	bx	lr
  800101a:	bf00      	nop
  800101c:	20000008 	.word	0x20000008
- 8001020:	200004c4 	.word	0x200004c4
+ 8001020:	20000bc4 	.word	0x20000bc4
 
 08001024 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -2527,7 +2527,7 @@ __weak uint32_t HAL_GetTick(void)
  8001030:	f85d 7b04 	ldr.w	r7, [sp], #4
  8001034:	4770      	bx	lr
  8001036:	bf00      	nop
- 8001038:	200004c4 	.word	0x200004c4
+ 8001038:	20000bc4 	.word	0x20000bc4
 
 0800103c <HAL_ADC_Init>:
   * @param  hadc pointer to a ADC_HandleTypeDef structure that contains
